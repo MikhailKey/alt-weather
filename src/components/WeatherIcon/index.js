@@ -1,20 +1,18 @@
 import React from 'react';
 
 const WeatherIcon = ({ description, day = "sunny" }) => {
-  console.log(day)
   if (description === "Clear") {
     if (day) {
-      console.log('Should display')
       return (
         <div className="Clear">
-          <i class="fas fa-sun"></i>
+          <i className="fas fa-sun"></i>
         </div>
       )
     }
     else {
       return (
         <div className="night">
-          <i class="fas fa-moon"></i>
+          <i className="fas fa-moon"></i>
         </div>
       )
     }
@@ -22,21 +20,21 @@ const WeatherIcon = ({ description, day = "sunny" }) => {
   else if (description === "Drizzle") {
     return (
       <div className="Drizzle">
-        <i class="fas fa-cloud-rain"></i>
+        <i className="fas fa-cloud-rain"></i>
       </div>
     )
   }
   else if (description === "Rain") {
     return (
       <div className="Rain">
-        <i class="fas fa-cloud-showers-heavy"></i>
+        <i className="fas fa-cloud-showers-heavy"></i>
       </div>
     )
   }
   else if (description === "Thunderstorm") {
     return (
       <div className="Thunderstorm">
-        <i class="fas fa-cloud-showers-heavy"></i>
+        <i className="fas fa-cloud-showers-heavy"></i>
       </div>
     )
   }
@@ -44,14 +42,14 @@ const WeatherIcon = ({ description, day = "sunny" }) => {
     if (day) {
       return (
         <div className="Clouds-morning">
-          <i class="fas fa-cloud"></i>
+          <i className="fas fa-cloud"></i>
         </div>
       )
     }
     else {
       return (
         <div className={description}>
-          <i class="fas fa-cloud"></i>
+          <i className="fas fa-cloud"></i>
         </div>
       )
     }
@@ -59,7 +57,7 @@ const WeatherIcon = ({ description, day = "sunny" }) => {
   else {
     return (
       <div className={description}>
-        <i class="fas fa-smog"></i>
+        <i className="fas fa-smog"></i>
       </div>
     )
   }
