@@ -17,7 +17,7 @@ const Main = () => {
   const classes = useStyles();
   const [opened, setOpened] = useState(false);
   const [activeItem, setActiveItem] = useState({});
-  const [cities, setCities] = useState(['Moscow', 'London', 'New York', 'Beijing']);
+  const [cities, setCities] = useState(['Moscow', 'London', 'New York', 'Beijing', 'Rome']);
 
   const handleClickOpen = (item) => {
     setActiveItem(item)
