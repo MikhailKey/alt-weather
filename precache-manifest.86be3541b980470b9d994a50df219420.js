@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7e7ee7f247f718ed2e3311275c806c27",
+    "revision": "1fce728a2fb5e3146197ecebeff15943",
     "url": "/alt-weather/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/alt-weather/static/css/2.764ccc25.chunk.css"
   },
   {
-    "revision": "47aa2b4189e726326425",
+    "revision": "743168bfda603a8452d5",
     "url": "/alt-weather/static/css/main.c2c835f9.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/alt-weather/static/js/2.3fe29dd0.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "47aa2b4189e726326425",
-    "url": "/alt-weather/static/js/main.ff9ea25d.chunk.js"
+    "revision": "743168bfda603a8452d5",
+    "url": "/alt-weather/static/js/main.328b1009.chunk.js"
   },
   {
     "revision": "d528932743d8c6412f82",
