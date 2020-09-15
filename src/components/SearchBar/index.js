@@ -66,16 +66,16 @@ const SearchInput = ({ classes, onChange }) => {
           <SearchIcon />
         </div>
         <InputBase
-          placeholder="Поиск..."
+          placeholder="Search..."
           onChange={(e) => setValue(e.target.value)}
           classes={{
             root: classes.inputRoot,
             input: classes.inputInput,
           }}
-          inputProps={{ 'aria-label': 'поиск' }}
+          inputProps={{ 'aria-label': 'search' }}
         />
       </div>
-      <Button type="submit">Search</Button>
+      <Button type="submit">Add</Button>
     </form>
   )
 }

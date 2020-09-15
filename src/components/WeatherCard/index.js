@@ -17,6 +17,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    margin: '0 auto',
   },
   media: {
     height: 140,

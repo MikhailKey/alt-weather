@@ -14,7 +14,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    paddingTop: theme.spacing(25)
+    paddingTop: theme.spacing(25), 
   },
   searchTool: {
     display: 'flex',
