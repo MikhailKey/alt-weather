@@ -13,7 +13,7 @@ export const useTime = () => {
   dayjs.locale('en');
 
   const formatDate = (number) => {
-    return dayjs(new Date()).add(number, 's').format('ddd, MMM-M')
+    return dayjs.unix(number).format('ddd, MMM-DD')
   }
 
   return {

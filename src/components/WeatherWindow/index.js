@@ -36,7 +36,7 @@ const WeatherWindow = ({ handleClose, open, city }) => {
     const data = await request(`onecall?lat=${city.coordinates.lat}&lon=${city.coordinates.lon}&exclude=hourly,minutely&units=metric&appid=${key}`, 'get');
     if (data) {
       setItem({
-        daily: data.daily.slice(0, data.daily.length - 1),
+        daily: data.daily.slice(1, data.daily.length),
         current: city
       })
     }
