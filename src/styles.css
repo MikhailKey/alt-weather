@@ -135,3 +135,43 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+.Clouds,
+.Mist,
+.Haze,
+.Smoke,
+.Fog {
+  font-size: 30px;
+  color: #546e7a;
+}
+
+.Rain,
+.Drizzle {
+  font-size: 30px;
+  color: #90caf9;
+}
+
+.Thunderstorm {
+  font-size: 30px;
+  color: #546e7a;
+}
+
+.Clear {
+  font-size: 30px;
+  color: #ffc107;
+}
+
+.Clouds-morning {
+  font-size: 30px;
+  color: #90caf9;
+}
+
+.night {
+  color: #546e7a;
+  font-size: 30px;
+}
+
+.flag {
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
