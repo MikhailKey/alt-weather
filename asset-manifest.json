@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/alt-weather/static/css/main.c2c835f9.chunk.css",
+    "main.js": "/alt-weather/static/js/main.ebf21a09.chunk.js",
+    "main.js.map": "/alt-weather/static/js/main.ebf21a09.chunk.js.map",
+    "runtime-main.js": "/alt-weather/static/js/runtime-main.a3a1e340.js",
+    "runtime-main.js.map": "/alt-weather/static/js/runtime-main.a3a1e340.js.map",
+    "static/css/2.764ccc25.chunk.css": "/alt-weather/static/css/2.764ccc25.chunk.css",
+    "static/js/2.a2f4257f.chunk.js": "/alt-weather/static/js/2.a2f4257f.chunk.js",
+    "static/js/2.a2f4257f.chunk.js.map": "/alt-weather/static/js/2.a2f4257f.chunk.js.map",
+    "index.html": "/alt-weather/index.html",
+    "precache-manifest.2db0dde3b8f264a74e4d20ddd83ca9e1.js": "/alt-weather/precache-manifest.2db0dde3b8f264a74e4d20ddd83ca9e1.js",
+    "service-worker.js": "/alt-weather/service-worker.js",
+    "static/css/2.764ccc25.chunk.css.map": "/alt-weather/static/css/2.764ccc25.chunk.css.map",
+    "static/css/main.c2c835f9.chunk.css.map": "/alt-weather/static/css/main.c2c835f9.chunk.css.map",
+    "static/js/2.a2f4257f.chunk.js.LICENSE.txt": "/alt-weather/static/js/2.a2f4257f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a3a1e340.js",
+    "static/css/2.764ccc25.chunk.css",
+    "static/js/2.a2f4257f.chunk.js",
+    "static/css/main.c2c835f9.chunk.css",
+    "static/js/main.ebf21a09.chunk.js"
+  ]
+}
