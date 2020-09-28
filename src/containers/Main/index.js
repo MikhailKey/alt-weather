@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Context } from '../../hooks/contextHook';
-import { useHttp } from '../../hooks/httpHook';
 import WeatherCard from '../../components/WeatherCard';
 import WeatherWindow from '../../components/WeatherWindow';
 import SearchBar from '../../components/SearchBar';
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+import { useMutation } from '@apollo/client';
+import { GET_TOWN_CARD } from '../../queries/handleTownCard';
 //MUI
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
@@ -14,7 +15,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    paddingTop: theme.spacing(25), 
+    paddingTop: theme.spacing(25),
   },
   searchTool: {
     display: 'flex',
@@ -27,26 +28,32 @@ const Main = () => {
   const [opened, setOpened] = useState(false);
   const [value, setValue] = useState('');
   const [activeItem, setActiveItem] = useState({});
-  const { request, error } = useHttp();
+  console.log(useMutation(GET_TOWN_CARD));
+  const [response, { data, loading, error }] = useMutation(GET_TOWN_CARD);
   const { key } = useContext(Context);
   const [cities, setCities] = useState(['Moscow', 'London', 'New York', 'Beijing']);
-
+  
   const handleClickOpen = (item) => {
     setActiveItem(item)
     setOpened(true);
   };
 
   const checkCity = async (inputValue) => {
-    const data = await request(`weather?q=${inputValue}&units=metric&appid=${key}`, 'get');
-    if (data) {
-      let alreadyInList = cities.findIndex(item => item.toLowerCase() === inputValue.toLowerCase());
+    response({
+      variables: { city: inputValue, key }
+    })
+  }
+
+  useEffect(() => {
+    if (data && data.response) {
+      let alreadyInList = cities.findIndex(item => item.toLowerCase() === value.toLowerCase());
       if (alreadyInList + 1) {
         return;
       }
-      let newArr = [...cities, inputValue];
+      let newArr = [...cities, value];
       setCities(newArr)
     }
-  }
+  }, [data])
 
   useEffect(() => {
     if (value) {
@@ -84,7 +91,7 @@ const Main = () => {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       >
         <Alert
-          severity="error">{error.message}</Alert>
+          severity="error">{error}</Alert>
       </Snackbar>
     </Grid>
   )

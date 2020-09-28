@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from 'react';
 import { Context } from '../../hooks/contextHook';
-import { useHttp } from '../../hooks/httpHook';
 import Skeleton from '@material-ui/lab/Skeleton';
+import { GET_TOWN_CARD } from '../../queries/townCard';
+import { useQuery } from '@apollo/client';
 //MUI
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -25,6 +27,12 @@ const useStyles = makeStyles({
 });
 
 const WeatherCard = ({ handleOpen, city }) => {
+  const { key } = useContext(Context);
+  
+  const { data, loading, error } = useQuery(GET_TOWN_CARD, {
+    variables: { city, key }
+  });
+
   const [item, setItem] = useState({
     country: '',
     name: '',
@@ -35,8 +43,6 @@ const WeatherCard = ({ handleOpen, city }) => {
     weather: {}
   });
   const classes = useStyles();
-  const { key } = useContext(Context);
-  const { request, loading, error } = useHttp();
 
   const openWindow = () => {
     if (Object.keys(item).length) {
@@ -45,24 +51,21 @@ const WeatherCard = ({ handleOpen, city }) => {
     else return;
   }
 
-  const getData = async () => {
-    const data = await request(`weather?q=${city}&units=metric&appid=${key}`, 'get');
+  useEffect(() => {
     if (data) {
+      const { response } = data;
       const targetItem = {
-        name: `${data.name}, ${data.sys.country}`,
-        coordinates: data.coord,
-        temperature: data.main.temp.toFixed(0),
-        temp_min: data.main.temp_min.toFixed(0),
-        temp_max: data.main.temp_max.toFixed(0),
-        weather: data.weather
+        name: `${response.name}, ${response.sys.country}`,
+        coordinates: response.coord,
+        temperature: response.main.temp.toFixed(0),
+        temp_min: response.main.temp_min.toFixed(0),
+        temp_max: response.main.temp_max.toFixed(0),
+        weather: response.weather
       }
       setItem(targetItem);
     }
-  }
+  }, [data])
 
-  useEffect(() => {
-    getData()
-  }, [])
 
   return (
     <>

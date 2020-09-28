@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Context } from '../../hooks/contextHook';
-import { useHttp } from '../../hooks/httpHook';
 import DayWeather from '../DayWeather';
+import SimpleBar from 'simplebar-react';
+import { useMutation } from '@apollo/client';
+import { GET_TOWN_WINDOW } from '../../queries/townWindow';
 //MUI
 import List from '@material-ui/core/List';
 import Button from '@material-ui/core/Button';
@@ -18,9 +20,10 @@ import { Grid } from '@material-ui/core';
 
 const WeatherWindow = ({ handleClose, open, city }) => {
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const { request, loading, error } = useHttp();
   const { key } = useContext(Context);
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const [getTownCard, { data, loading }] = useMutation(GET_TOWN_WINDOW);
+
   const [item, setItem] = useState({
     current: {
       temperature: 0,
@@ -32,21 +35,23 @@ const WeatherWindow = ({ handleClose, open, city }) => {
     }
   });
 
-  const getData = async () => {
-    const data = await request(`onecall?lat=${city.coordinates.lat}&lon=${city.coordinates.lon}&exclude=hourly,minutely&units=metric&appid=${key}`, 'get');
-    if (data) {
+  useEffect(() => {
+    if (city.name) {
+      getTownCard({
+        variables: { key, lat: city.coordinates.lat, lon: city.coordinates.lon }
+      })
+    }
+  }, [city])
+
+  useEffect(() => {
+    if (data && data.getTownCard) {
+      const { daily } = data.getTownCard;
       setItem({
-        daily: data.daily.slice(1, data.daily.length),
+        daily: daily.slice(1, daily.length),
         current: city
       })
     }
-  }
-
-  useEffect(() => {
-    if (city.name) {
-      getData()
-    }
-  }, [city])
+  }, [data])
 
 
 
@@ -62,7 +67,7 @@ const WeatherWindow = ({ handleClose, open, city }) => {
         <DialogTitle>{city.name}</DialogTitle>
         <DialogContent>
           {
-            loading ? <Skeleton width={'100%'} height={700} /> : (
+            loading ? <Skeleton width={'100%'} height={400} /> : (
               <>
                 <Grid>
                   <Typography variant="h2" color="textSecondary">
@@ -73,8 +78,8 @@ const WeatherWindow = ({ handleClose, open, city }) => {
                 </Typography>
                 </Grid>
                 <Divider />
-                <Grid>
-                  <Typography variant="h5">7-day forecast</Typography>
+                <Typography variant="h5">7-day forecast</Typography>
+                <SimpleBar style={{ maxHeight: 300 }}>
                   <List>
                     {
                       item.daily.length ? item.daily.map((day) => {
@@ -82,7 +87,7 @@ const WeatherWindow = ({ handleClose, open, city }) => {
                       }) : null
                     }
                   </List>
-                </Grid>
+                </SimpleBar>
               </>
             )
           }
