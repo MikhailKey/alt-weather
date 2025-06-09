@@ -60,7 +60,7 @@ const WeatherCard = ({ handleOpen, city }) => {
         temperature: response.main.temp.toFixed(0),
         temp_min: response.main.temp_min.toFixed(0),
         temp_max: response.main.temp_max.toFixed(0),
-        weather: response.weather
+        weather: response.weather[0]
       }
       setItem(targetItem);
     }
